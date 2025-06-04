@@ -34,7 +34,12 @@ def translate_text_chatgpt(text, src_lang, trg_lang):
 	system_instruction = f'assistant는 번역앱으로 동작한다. {src_lang}를 {trg_lang}로 적절하게 번역된 텍스트만 출력한다.'
 	fewshot_messages = build_fewshot(src_lang=src_lang, trg_lang=trg_lang)
 	massages = [{"role" : "system", "content":system_instruction}, *fewshot_messages, {"role":"user", "content":text}]
-	print(massages)
+	# print(massages)
+	response = client.chat.completions.create(
+		model="gpt-4.1-2025-04-14",
+		messages=massages
+	)
+	return response.choices[0].message.content
 
 
 ## creating UI
