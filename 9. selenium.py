@@ -10,5 +10,8 @@ driver.get('https://www.google.com')
 search = driver.find_element('name', 'q')
 # search 칸에다가 '날씨' 라고 입력
 search.send_keys('날씨')
+# enter키
+search.send_keys(Keys.RETURN)
 
 time.sleep(10)
+
